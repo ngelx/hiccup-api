@@ -1,5 +1,4 @@
 # encoding: UTF-8
-# frozen_string_literal: true
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,34 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_407_142_743) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
-  enable_extension 'hstore'
+ActiveRecord::Schema.define(version: 20160407150745) do
 
-  create_table 'trips', force: :cascade do |t|
-    t.string   'name', null: false
-    t.string   'organizator'
-    t.datetime 'start_date',          null: false
-    t.datetime 'end_date',            null: false
-    t.string   'start_location'
-    t.string   'end_location'
-    t.text     'goal'
-    t.string   'route'
-    t.string   'transportation'
-    t.string   'comunication'
-    t.string   'freak_out'
-    t.string   'in_reach_map'
-    t.string   'agency'
-    t.string   'fees'
-    t.string   'stove_fuel'
-    t.string   'transportation_time'
-    t.text     'direction_out'
-    t.text     'condition_caution'
-    t.text     'animal_caution'
-    t.text     'plant_caution'
-    t.text     'fly_issue'
-    t.string   'supermarket'
-    t.string   'outdoor_store'
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "hstore"
+
+  create_table "intineraries", force: :cascade do |t|
+    t.integer  "trip_id",        null: false
+    t.string   "start_location"
+    t.string   "end_location"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "water"
+    t.integer  "hammok"
+    t.boolean  "fishing"
+    t.string   "forecast"
   end
+
+  add_index "intineraries", ["trip_id"], name: "index_intineraries_on_trip_id", using: :btree
+
+  create_table "trips", force: :cascade do |t|
+    t.string   "name",                null: false
+    t.string   "organizator"
+    t.datetime "start_date",          null: false
+    t.datetime "end_date",            null: false
+    t.string   "start_location"
+    t.string   "end_location"
+    t.text     "goal"
+    t.string   "route"
+    t.string   "transportation"
+    t.string   "comunication"
+    t.string   "freak_out"
+    t.string   "in_reach_map"
+    t.string   "agency"
+    t.string   "fees"
+    t.string   "stove_fuel"
+    t.string   "transportation_time"
+    t.text     "direction_out"
+    t.text     "condition_caution"
+    t.text     "animal_caution"
+    t.text     "plant_caution"
+    t.text     "fly_issue"
+    t.string   "supermarket"
+    t.string   "outdoor_store"
+  end
+
 end

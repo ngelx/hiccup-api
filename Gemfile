@@ -38,4 +38,6 @@ group :development, :test do
 
   gem 'rubocop', require: false
   gem 'guard-rspec', require: false
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'rspec-its'
 end
