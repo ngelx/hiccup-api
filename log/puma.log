@@ -51,3 +51,26 @@
 [6180] * Starting control server on unix:///tmp/puma-status-1459254980762-6180
 [6180] - Worker 0 (pid: 6342) booted, phase: 0
 [6180] - Worker 1 (pid: 6344) booted, phase: 0
+[6180] ! Terminating timed out worker: 6342
+[6180] ! Out-of-sync worker list, no 6342 worker
+[6180] - Worker 0 (pid: 7651) booted, phase: 0
+[6180] ! Terminating timed out worker: 7651
+[6180] ! Out-of-sync worker list, no 7651 worker
+[6180] - Worker 0 (pid: 8623) booted, phase: 0
+[6180] ! Terminating timed out worker: 6344
+[6180] ! Out-of-sync worker list, no 6344 worker
+[6180] - Worker 1 (pid: 14831) booted, phase: 0
+[6180] - Gracefully shutting down workers...
+[6180] === puma shutdown: 2016-04-01 12:24:55 +0000 ===
+[6180] - Goodbye!
+[23793] Puma starting in cluster mode...
+[23793] * Version 3.2.0 (ruby 2.2.5-p285), codename: Spring Is A Heliocentric Viewpoint
+[23793] * Min threads: 5, max threads: 5
+[23793] * Environment: development
+[23793] * Process workers: 2
+[23793] * Preloading application
+[23793] * Listening on unix:///tmp/puma.sock
+[23793] Use Ctrl-C to stop
+[23793] * Starting control server on unix:///tmp/puma-status-1460038601515-23793
+[23793] - Worker 0 (pid: 23956) booted, phase: 0
+[23793] - Worker 1 (pid: 23963) booted, phase: 0

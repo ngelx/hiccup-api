@@ -1,3 +1,5 @@
+# encoding: utf-8
+# frozen_string_literal: true
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
@@ -23,13 +25,13 @@ module HiccupApi
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
+    config.middleware.insert_before 0, 'Rack::Cors', debug: true, logger: (-> { Rails.logger }) do
       allow do
         origins '*'
         resource '*',
-          :headers => :any,
-          :methods => [:get, :post, :delete, :put, :patch, :options, :head],
-          :max_age => 0
+                 headers: :any,
+                 methods: [:get, :post, :delete, :put, :patch, :options, :head],
+                 max_age: 0
       end
     end
   end

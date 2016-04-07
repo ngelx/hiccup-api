@@ -1,5 +1,6 @@
+# encoding: utf-8
+# frozen_string_literal: true
 source 'https://rubygems.org'
-
 
 gem 'rails', '4.2.6'
 
@@ -7,11 +8,9 @@ gem 'rails-api'
 
 gem 'rails_12factor', group: [:production]
 
-gem 'spring', :group => :development
+gem 'spring', group: :development
 
 gem 'pg'
-
-
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -38,4 +37,5 @@ group :development, :test do
   gem 'simplecov', require: false
 
   gem 'rubocop', require: false
+  gem 'guard-rspec', require: false
 end
