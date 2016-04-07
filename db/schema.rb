@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407150745) do
+ActiveRecord::Schema.define(version: 20160407160247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20160407150745) do
   end
 
   add_index "intineraries", ["trip_id"], name: "index_intineraries_on_trip_id", using: :btree
+
+  create_table "local_contacts", force: :cascade do |t|
+    t.integer "trip_id", null: false
+    t.string  "name",    null: false
+    t.string  "email"
+    t.string  "phone"
+  end
+
+  add_index "local_contacts", ["trip_id"], name: "index_local_contacts_on_trip_id", using: :btree
 
   create_table "trips", force: :cascade do |t|
     t.string   "name",                null: false

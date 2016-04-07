@@ -22,11 +22,7 @@ require 'rails_helper'
 
 RSpec.describe Intinerary, type: :model do
   describe 'Validations' do
-    subject(:intinerary) { build(:intinerary) }
-    it { should be_valid }
-
-    context 'invalids' do
-      it { expect(build(:intinerary, trip: nil)).to_not be_valid }
-    end
+    it {should validate_presence_of(:trip)}
+    it {should belong_to(:trip) }
   end
 end

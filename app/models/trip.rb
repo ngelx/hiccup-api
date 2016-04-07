@@ -32,6 +32,8 @@
 
 class Trip < ActiveRecord::Base
   has_many :intineraries
+  has_one :local_contact
+
   validates :name, :start_date, :end_date, presence: true
 
   def days
