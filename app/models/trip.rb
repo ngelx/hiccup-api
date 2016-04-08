@@ -33,6 +33,7 @@
 class Trip < ActiveRecord::Base
   has_many :intineraries
   has_one :local_contact
+  has_one :share
 
   validates :name, :start_date, :end_date, presence: true
 
