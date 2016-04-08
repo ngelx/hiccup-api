@@ -37,21 +37,19 @@ class Trip < ActiveRecord::Base
   validates :name, :start_date, :end_date, presence: true
 
   def days
-    return (self.end_date.to_date - self.start_date.to_date).to_i
+    (end_date.to_date - start_date.to_date).to_i
   end
 
   def auto_create_intineraries
-    current_date = self.start_date.to_date
-    finish_date = self.end_date.to_date
-    total_days =finish_date - current_date
+    current_date = start_date.to_date
+    finish_date = end_date.to_date
+    total_days = finish_date - current_date
     day = 1
 
-    while (day <= self.days) do
-      self.intineraries.create()
+    while day <= days
+      intineraries.create
       current_date + 1.day
-      day +=1
+      day += 1
     end
-
   end
-
 end

@@ -1,3 +1,5 @@
+# encoding: utf-8
+# frozen_string_literal: true
 class CreateIntineraries < ActiveRecord::Migration
   def change
     create_table :intineraries do |t|

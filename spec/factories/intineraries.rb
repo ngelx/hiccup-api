@@ -1,3 +1,5 @@
+# encoding: utf-8
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: intineraries
@@ -21,13 +23,13 @@
 FactoryGirl.define do
   factory :intinerary do
     trip
-    start_location "MyString"
-    end_location "MyString"
+    start_location 'MyString'
+    end_location 'MyString'
     start_time DateTime.current
     end_time DateTime.current + 4.hours
     water 1
     hammok 1
     fishing false
-    forecast "MyString"
+    forecast 'MyString'
   end
 end
