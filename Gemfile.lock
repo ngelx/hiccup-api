@@ -41,6 +41,7 @@ GEM
       rake (>= 0.8.7)
     arel (6.0.3)
     ast (2.2.0)
+    bcrypt (3.1.11)
     builder (3.2.2)
     coderay (1.1.1)
     concurrent-ruby (1.0.1)
@@ -205,6 +206,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  bcrypt (~> 3.1.7)
   factory_girl
   factory_girl_rails
   guard-rspec

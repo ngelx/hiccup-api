@@ -2,11 +2,11 @@
 #
 # Table name: shares
 #
-#  id                 :integer          not null, primary key
-#  trip_id            :integer          not null
-#  public_url         :string           not null
-#  private_url        :string
-#  password_encrypted :string
+#  id              :integer          not null, primary key
+#  trip_id         :integer          not null
+#  public_url      :string           not null
+#  private_url     :string
+#  password_digest :string
 #
 # Indexes
 #
@@ -16,5 +16,8 @@
 class Share < ActiveRecord::Base
   belongs_to :trip
 
+  has_secure_password
+
   validates :trip, :public_url, presence: true
+
 end

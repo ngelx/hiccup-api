@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 20160408135121) do
   add_index "local_contacts", ["trip_id"], name: "index_local_contacts_on_trip_id", using: :btree
 
   create_table "shares", force: :cascade do |t|
-    t.integer "trip_id",            null: false
-    t.string  "public_url",         null: false
+    t.integer "trip_id",         null: false
+    t.string  "public_url",      null: false
     t.string  "private_url"
-    t.string  "password_encrypted"
+    t.string  "password_digest"
   end
 
   add_index "shares", ["trip_id"], name: "index_shares_on_trip_id", using: :btree

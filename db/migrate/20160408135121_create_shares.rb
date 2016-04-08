@@ -4,7 +4,7 @@ class CreateShares < ActiveRecord::Migration
       t.integer :trip_id, null:false, index: true
       t.string :public_url, null: false
       t.string :private_url
-      t.string :password_encrypted
+      t.string :password_digest
     end
   end
 end
