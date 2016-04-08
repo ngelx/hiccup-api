@@ -1,3 +1,5 @@
+# encoding: utf-8
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: shares
@@ -25,6 +27,6 @@ class Share < ActiveRecord::Base
   private
 
   def generate_public_url
-    self.public_url = "trip/#{self.trip.id}"
+    self.public_url = "trip/#{trip.id}"
   end
 end

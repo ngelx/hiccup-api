@@ -1,5 +1,6 @@
+# encoding: utf-8
+# frozen_string_literal: true
 class TripsController < ApplicationController
-
   def index
     @trips = Trip.paginate(page: params[:page], per_page: params[:per_page])
     render json: @trips

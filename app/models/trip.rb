@@ -45,18 +45,15 @@ class Trip < ActiveRecord::Base
   end
 
   def auto_create_share
-    self.create_share
+    create_share
   end
 
   def auto_create_intineraries
     current_date = start_date.to_date
-    finish_date = end_date.to_date
-    total_days = finish_date - current_date
     day = 1
-
     while day <= days
       intineraries.create
-      current_date + 1.day
+      current_date += 1.day
       day += 1
     end
   end

@@ -1,3 +1,5 @@
+# encoding: utf-8
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: shares
@@ -16,8 +18,8 @@
 FactoryGirl.define do
   factory :share do
     trip
-    public_url "public/1"
-    private_url "MyString"
-    password "abcd123"
+    public_url 'public/1'
+    private_url 'MyString'
+    password 'abcd123'
   end
 end

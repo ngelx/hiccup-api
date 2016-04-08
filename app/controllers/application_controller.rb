@@ -5,10 +5,11 @@ class ApplicationController < ActionController::API
 
   include DeviseTokenAuth::Concerns::SetUserByToken
 
-  before_filter :set_default_response_format
+  before_action :set_default_response_format
 
   private
-    def set_default_response_format
-      request.format = :json
-    end
+
+  def set_default_response_format
+    request.format = :json
+  end
 end

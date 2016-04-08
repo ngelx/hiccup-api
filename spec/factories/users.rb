@@ -1,3 +1,5 @@
+# encoding: utf-8
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: users
@@ -35,10 +37,10 @@
 
 FactoryGirl.define do
   factory :user do
-    uid "user@mail.com"
-    email "user@mail.com"
-    nickname "user"
-    provider "email"
-    password "abcd1234"
+    uid 'user@mail.com'
+    email 'user@mail.com'
+    nickname 'user'
+    provider 'email'
+    password 'abcd1234'
   end
 end

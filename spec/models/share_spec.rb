@@ -1,3 +1,5 @@
+# encoding: utf-8
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: shares
@@ -23,11 +25,11 @@ RSpec.describe Share, type: :model do
   end
 
   describe 'Private URL' do
-    it {should respond_to(:password)}
-    it {should respond_to(:authenticate)}
+    it { should respond_to(:password) }
+    it { should respond_to(:authenticate) }
 
     context 'encrypt password' do
-      subject(:share){create(:share, password: "abcd123")}
+      subject(:share) { create(:share, password: 'abcd123') }
 
       it { expect(share.authenticate('abcd123')).to be share }
       it { expect(share.authenticate('no-password')).to be false }
