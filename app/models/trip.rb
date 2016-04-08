@@ -28,12 +28,14 @@
 #  fly_issue           :text
 #  supermarket         :string
 #  outdoor_store       :string
+#  user_id             :integer
 #
 
 class Trip < ActiveRecord::Base
   has_many :intineraries
   has_one :local_contact
   has_one :share
+  belongs_to :user
 
   validates :name, :start_date, :end_date, presence: true
 

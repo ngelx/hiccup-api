@@ -28,6 +28,7 @@
 #  fly_issue           :text
 #  supermarket         :string
 #  outdoor_store       :string
+#  user_id             :integer
 #
 
 require 'rails_helper'
@@ -40,6 +41,8 @@ RSpec.describe Trip, type: :model do
     it { should have_many(:intineraries) }
     it { should have_one(:local_contact) }
     it { should have_one(:share) }
+    it { should belong_to(:user) }
+    it { expect(build(:trip, user: nil)).to be_valid }
   end
 
   describe '.days' do

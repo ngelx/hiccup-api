@@ -26,6 +26,10 @@ gem 'rollbar'
 gem 'oj', '~> 2.12.14'
 
 gem 'bcrypt', '~> 3.1.7'
+gem 'devise'
+gem 'omniauth'
+gem 'devise_token_auth'
+
 # Deploy with Capistrano
 # gem 'capistrano', :group => :development
 

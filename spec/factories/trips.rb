@@ -28,6 +28,7 @@
 #  fly_issue           :text
 #  supermarket         :string
 #  outdoor_store       :string
+#  user_id             :integer
 #
 
 FactoryGirl.define do
@@ -55,5 +56,6 @@ FactoryGirl.define do
     fly_issue 'MyText'
     supermarket 'MyString'
     outdoor_store 'MyString'
+    user
   end
 end
