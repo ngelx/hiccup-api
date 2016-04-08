@@ -32,15 +32,20 @@
 #
 
 class Trip < ActiveRecord::Base
-  has_many :intineraries
-  has_one :local_contact
-  has_one :share
+  has_many :intineraries, dependent: :destroy
+  has_one :local_contact, inverse_of: :trip, dependent: :destroy
+  has_one :share, dependent: :destroy
   belongs_to :user
 
   validates :name, :start_date, :end_date, presence: true
+  accepts_nested_attributes_for :local_contact
 
   def days
     (end_date.to_date - start_date.to_date).to_i
+  end
+
+  def auto_create_share
+    self.create_share
   end
 
   def auto_create_intineraries

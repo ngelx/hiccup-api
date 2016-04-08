@@ -20,4 +20,11 @@ class Share < ActiveRecord::Base
 
   validates :trip, :public_url, presence: true
 
+  before_create :generate_public_url
+
+  private
+
+  def generate_public_url
+    self.public_url = "trip/#{self.trip.id}"
+  end
 end

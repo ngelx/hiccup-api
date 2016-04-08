@@ -16,7 +16,7 @@
 
 # frozen_string_literal: true
 class LocalContact < ActiveRecord::Base
-  belongs_to :trip
+  belongs_to :trip, inverse_of: :local_contact
 
   validates :name, :trip, presence: true
 end

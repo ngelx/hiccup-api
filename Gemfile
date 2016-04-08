@@ -24,11 +24,14 @@ gem 'puma'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rollbar'
 gem 'oj', '~> 2.12.14'
+gem 'jbuilder'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'omniauth'
 gem 'devise_token_auth'
+
+gem 'will_paginate'
 
 # Deploy with Capistrano
 # gem 'capistrano', :group => :development
