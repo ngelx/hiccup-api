@@ -12,7 +12,7 @@ class TripsController < ApplicationController
       if @trip.save
         @trip.auto_create_intineraries
         @trip.auto_create_share
-        render 'show', formats: [:json], handlers: [:jbuilder], status: 201
+        render 'create', formats: [:json], handlers: [:jbuilder], status: 201
       else
         render json: @trip.errors, status: 422
       end
@@ -27,7 +27,7 @@ class TripsController < ApplicationController
       #raise ActiveRecord::RecordNotFound unless @trip.update_token == params[:update_token]
 
       if @trip.update(params_trip)
-        render 'show', formats: [:json], handlers: [:jbuilder], status: 201
+        render 'create', formats: [:json], handlers: [:jbuilder], status: 201
       else
         render json: @trip.errors, status: 422
       end
@@ -36,11 +36,13 @@ class TripsController < ApplicationController
     end
   end
 
+  # kind of wierd, it is not a standar show action ...
   def show
+    share = Share.find_by!(public_url: params[:id])
+    @trip = share.trip
+    render 'show', formats: [:json], handlers: [:jbuilder], status: 201
   end
 
-  def delete
-  end
 
   private
 

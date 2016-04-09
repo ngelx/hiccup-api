@@ -47,7 +47,7 @@ class Trip < ActiveRecord::Base
   end
 
   def auto_create_share
-    create_share
+    create_share!()
   end
 
   def auto_create_intineraries

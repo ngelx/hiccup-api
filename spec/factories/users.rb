@@ -37,9 +37,9 @@
 
 FactoryGirl.define do
   factory :user do
-    uid 'user@mail.com'
-    email 'user@mail.com'
-    nickname 'user'
+    sequence(:email) { |n| "person#{n}@example.com" }
+    uid {"#{email}"}
+    sequence(:nickname) { |n| "user#{n}" }
     provider 'email'
     password 'abcd1234'
   end

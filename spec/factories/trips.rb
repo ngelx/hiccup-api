@@ -59,5 +59,13 @@ FactoryGirl.define do
     outdoor_store 'MyString'
     user
     update_token nil
+
+    factory :trip_complete_for_integration do
+      after(:create) do |trip, evaluator|
+        create(:local_contact, trip: trip)
+        trip.auto_create_intineraries
+        trip.auto_create_share
+      end
+    end
   end
 end

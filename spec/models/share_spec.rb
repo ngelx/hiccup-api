@@ -19,8 +19,8 @@ require 'rails_helper'
 
 RSpec.describe Share, type: :model do
   describe 'Validations' do
-    it { should validate_presence_of(:public_url) }
     it { should validate_presence_of(:trip) }
+    it { should_not validate_presence_of(:password) }
     it { should belong_to(:trip) }
   end
 

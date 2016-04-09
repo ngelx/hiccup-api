@@ -48,7 +48,7 @@ RSpec.describe TripsController, type: :controller do
 
       it { expect(response).to have_http_status(:success) }
       it { expect(response.headers['Content-Type']).to eq 'application/json; charset=utf-8' }
-      it { expect(response).to render_template(:show) }
+      it { expect(response).to render_template(:create) }
 
       context 'Content' do
         subject(:r) { JSON.parse(response.body, symbolize_names: true) }
@@ -92,6 +92,7 @@ RSpec.describe TripsController, type: :controller do
 
     end
   end
+
   describe 'PATCH update' do
     let(:attrs) do
       attributes_for(:trip,
@@ -102,7 +103,6 @@ RSpec.describe TripsController, type: :controller do
     end
 
     context 'Success' do
-
       before do
         trip = create(:trip, name: "Original Trip")
         patch :update, {id: trip.id, update_token: trip.update_token,trip: attrs}
@@ -110,7 +110,7 @@ RSpec.describe TripsController, type: :controller do
 
       it { expect(response).to have_http_status(:success) }
       it { expect(response.headers['Content-Type']).to eq 'application/json; charset=utf-8' }
-      it { expect(response).to render_template(:show) }
+      it { expect(response).to render_template(:create) }
       it { expect(JSON.parse(response.body, symbolize_names: true)[:name]).to eq 'Trip updated' }
     end
     context "Error" do
@@ -130,6 +130,31 @@ RSpec.describe TripsController, type: :controller do
         it { expect(response).to have_http_status(:not_found) }
         it { expect(JSON.parse(response.body, symbolize_names: true)[:error]).to eq 'Couldn\'t find Trip' }
       end
+    end
+  end
+
+  describe 'GET show' do
+    let!(:trip) { create(:trip_complete_for_integration, name: "Show trip test", user: nil) }
+
+    context 'Success' do
+      before { get :show, id: trip.share.public_url }
+
+      it { expect(response).to have_http_status(:success) }
+      it { expect(response.headers['Content-Type']).to eq 'application/json; charset=utf-8' }
+      it { expect(response).to render_template(:show) }
+
+      context 'Content' do
+        subject(:r) { JSON.parse(response.body, symbolize_names: true) }
+
+        it { expect(r[:id]).to eq trip.id }
+        it { expect(r[:name]).to eq trip.name }
+        it { expect(r[:intineraries].length).to eq 2 }
+        it { expect(r.key?(:share)).to be_falsey }
+        it { expect(r.key?(:local_contact)).to be true }
+        it { expect(r[:local_contact]).to be_truthy }
+        it { expect(r[:update_token]).to be_falsey }
+      end
+
     end
   end
 end

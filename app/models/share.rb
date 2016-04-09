@@ -18,15 +18,16 @@
 class Share < ActiveRecord::Base
   belongs_to :trip
 
-  has_secure_password
+  has_secure_password(validations: false)
 
-  validates :trip, :public_url, presence: true
+  validates :trip, presence: true
 
-  before_create :generate_public_url
+  before_create :generate_urls
 
   private
 
-  def generate_public_url
-    self.public_url = "trip/#{trip.id}"
+  def generate_urls
+    self.public_url = SecureRandom.uuid
+    self.private_url = SecureRandom.uuid
   end
 end
