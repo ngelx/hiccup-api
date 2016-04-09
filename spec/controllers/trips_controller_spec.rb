@@ -194,6 +194,11 @@ RSpec.describe TripsController, type: :controller do
         get :private, {id: trip.share.private_url, password: "invalid-password"}
         expect(response).to have_http_status(:not_found)
       end
+      it "No password" do
+        get :private, {id: trip.share.private_url}
+        expect(response).to have_http_status(400)
+      end
+
     end
   end
 end

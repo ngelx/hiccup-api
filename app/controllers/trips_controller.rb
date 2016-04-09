@@ -43,11 +43,15 @@ class TripsController < ApplicationController
   end
 
   def private
-    share = Share.find_by!(private_url: params[:id]).authenticate(params[:password])
-    raise ActiveRecord::RecordNotFound unless share
+    if params[:password]
+      share = Share.find_by!(private_url: params[:id]).authenticate(params[:password])
+      raise ActiveRecord::RecordNotFound unless share
 
-    @trip = share.trip
-    render 'show', formats: [:json], handlers: [:jbuilder], status: 200
+      @trip = share.trip
+      render 'show', formats: [:json], handlers: [:jbuilder], status: 200
+    else
+      render json: { error: 'missing argument' }, status: 400
+    end
   end
 
   private
