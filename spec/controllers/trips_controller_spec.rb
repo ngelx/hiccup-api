@@ -163,10 +163,10 @@ RSpec.describe TripsController, type: :controller do
   end
 
   describe 'GET private' do
-    let!(:trip) { create(:trip_complete_for_integration, name: 'Show trip test', user: nil, password: "abcd1234") }
+    let!(:trip) { create(:trip_complete_for_integration, name: 'Show trip test', user: nil, password: 'abcd1234') }
 
     context 'Success' do
-      before { get :private, {id: trip.share.private_url, password: 'abcd1234'} }
+      before { get :private, id: trip.share.private_url, password: 'abcd1234' }
 
       it { expect(response).to have_http_status(:success) }
       it { expect(response.headers['Content-Type']).to eq 'application/json; charset=utf-8' }
@@ -185,20 +185,19 @@ RSpec.describe TripsController, type: :controller do
       end
     end
     context 'Error' do
-      it "bad id" do
-        get :private, {id: 'not-a-valid-id', password: "abcd1234"}
+      it 'bad id' do
+        get :private, id: 'not-a-valid-id', password: 'abcd1234'
         expect(response).to have_http_status(:not_found)
         expect(JSON.parse(response.body, symbolize_names: true)[:error]).to eq 'Couldn\'t find Share'
       end
-      it "bad password" do
-        get :private, {id: trip.share.private_url, password: "invalid-password"}
+      it 'bad password' do
+        get :private, id: trip.share.private_url, password: 'invalid-password'
         expect(response).to have_http_status(:not_found)
       end
-      it "No password" do
-        get :private, {id: trip.share.private_url}
+      it 'No password' do
+        get :private, id: trip.share.private_url
         expect(response).to have_http_status(400)
       end
-
     end
   end
 end

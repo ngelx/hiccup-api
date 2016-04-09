@@ -62,7 +62,7 @@ FactoryGirl.define do
 
     factory :trip_complete_for_integration do
       transient do
-        password "abcd1234"
+        password 'abcd1234'
       end
 
       after(:create) do |trip, evaluator|
