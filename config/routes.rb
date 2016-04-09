@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  resources :trips
+  resources :trips, only: [:index, :create, :update, :show] do
+    member do
+      get 'private'
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

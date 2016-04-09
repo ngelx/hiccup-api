@@ -24,7 +24,6 @@ class TripsController < ApplicationController
   def update
     if params[:trip] && params[:update_token]
       @trip = Trip.find_by!(id: params[:id], update_token: params[:update_token])
-      # raise ActiveRecord::RecordNotFound unless @trip.update_token == params[:update_token]
 
       if @trip.update(params_trip)
         render 'create', formats: [:json], handlers: [:jbuilder], status: 201
@@ -40,7 +39,15 @@ class TripsController < ApplicationController
   def show
     share = Share.find_by!(public_url: params[:id])
     @trip = share.trip
-    render 'show', formats: [:json], handlers: [:jbuilder], status: 201
+    render 'show', formats: [:json], handlers: [:jbuilder], status: 200
+  end
+
+  def private
+    share = Share.find_by!(private_url: params[:id]).authenticate(params[:password])
+    raise ActiveRecord::RecordNotFound unless share
+
+    @trip = share.trip
+    render 'show', formats: [:json], handlers: [:jbuilder], status: 200
   end
 
   private

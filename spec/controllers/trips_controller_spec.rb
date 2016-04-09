@@ -132,7 +132,7 @@ RSpec.describe TripsController, type: :controller do
     end
   end
 
-  describe 'GET show' do
+  describe 'GET public' do
     let!(:trip) { create(:trip_complete_for_integration, name: 'Show trip test', user: nil) }
 
     context 'Success' do
@@ -159,6 +159,41 @@ RSpec.describe TripsController, type: :controller do
 
       it { expect(response).to have_http_status(:not_found) }
       it { expect(JSON.parse(response.body, symbolize_names: true)[:error]).to eq 'Couldn\'t find Share' }
+    end
+  end
+
+  describe 'GET private' do
+    let!(:trip) { create(:trip_complete_for_integration, name: 'Show trip test', user: nil, password: "abcd1234") }
+
+    context 'Success' do
+      before { get :private, {id: trip.share.private_url, password: 'abcd1234'} }
+
+      it { expect(response).to have_http_status(:success) }
+      it { expect(response.headers['Content-Type']).to eq 'application/json; charset=utf-8' }
+      it { expect(response).to render_template(:show) }
+
+      context 'Content' do
+        subject(:r) { JSON.parse(response.body, symbolize_names: true) }
+
+        it { expect(r[:id]).to eq trip.id }
+        it { expect(r[:name]).to eq trip.name }
+        it { expect(r[:intineraries].length).to eq 2 }
+        it { expect(r.key?(:share)).to be_falsey }
+        it { expect(r.key?(:local_contact)).to be true }
+        it { expect(r[:local_contact]).to be_truthy }
+        it { expect(r[:update_token]).to be_falsey }
+      end
+    end
+    context 'Error' do
+      it "bad id" do
+        get :private, {id: 'not-a-valid-id', password: "abcd1234"}
+        expect(response).to have_http_status(:not_found)
+        expect(JSON.parse(response.body, symbolize_names: true)[:error]).to eq 'Couldn\'t find Share'
+      end
+      it "bad password" do
+        get :private, {id: trip.share.private_url, password: "invalid-password"}
+        expect(response).to have_http_status(:not_found)
+      end
     end
   end
 end

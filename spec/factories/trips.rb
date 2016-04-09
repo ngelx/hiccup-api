@@ -61,10 +61,14 @@ FactoryGirl.define do
     update_token nil
 
     factory :trip_complete_for_integration do
-      after(:create) do |trip, _evaluator|
+      transient do
+        password "abcd1234"
+      end
+
+      after(:create) do |trip, evaluator|
         create(:local_contact, trip: trip)
+        create(:share, trip: trip, password: evaluator.password)
         trip.auto_create_intineraries
-        trip.auto_create_share
       end
     end
   end
