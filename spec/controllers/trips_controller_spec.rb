@@ -154,6 +154,12 @@ RSpec.describe TripsController, type: :controller do
         it { expect(r[:local_contact]).to be_truthy }
         it { expect(r[:update_token]).to be_falsey }
       end
+    end
+    context "Error" do
+      before { get :show, id: "not-a-valid-id" }
+
+      it { expect(response).to have_http_status(:not_found) }
+      it { expect(JSON.parse(response.body, symbolize_names: true)[:error]).to eq 'Couldn\'t find Share' }
 
     end
   end
