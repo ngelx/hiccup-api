@@ -200,4 +200,34 @@ RSpec.describe TripsController, type: :controller do
       end
     end
   end
+
+  describe 'PUT password' do
+    let(:trip) { create(:trip_complete_for_integration, name: 'Original Trip', password: nil) }
+    context 'Success' do
+      before { put :password, id: trip.id, update_token: trip.update_token, share: { password: 'test123' } }
+
+      it { expect(response).to have_http_status(:success) }
+      it { expect(response.headers['Content-Type']).to eq 'application/json' }
+      it { expect(response.body).to be_empty }
+      # reload is important to avoid cache issue in this test.
+      it { expect(trip.share.reload.authenticate('test123')).to be trip.share }
+    end
+
+    context 'Error' do
+      it 'missing share argument' do
+        put :password, id: trip.id, update_token: trip.update_token
+        expect(response).to have_http_status(400)
+      end
+      it 'missing update_token argument' do
+        put :password, id: trip.id, share: { password: 'test123' }
+        expect(response).to have_http_status(400)
+      end
+      context 'bad update_token' do
+        before { put :password, id: trip.id, update_token: 'bad-token', share: { password: 'test123' } }
+
+        it { expect(response).to have_http_status(:not_found) }
+        it { expect(JSON.parse(response.body, symbolize_names: true)[:error]).to eq 'Couldn\'t find Trip' }
+      end
+    end
+  end
 end

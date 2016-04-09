@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :trips, only: [:index, :create, :update, :show] do
     member do
       get 'private'
+      put 'password'
     end
   end
   # Example of regular route:
