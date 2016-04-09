@@ -29,6 +29,7 @@
 #  supermarket         :string
 #  outdoor_store       :string
 #  user_id             :integer
+#  update_token        :string
 #
 
 class Trip < ActiveRecord::Base
@@ -40,6 +41,7 @@ class Trip < ActiveRecord::Base
   validates :name, :start_date, :end_date, presence: true
   accepts_nested_attributes_for :local_contact
 
+  before_create :set_update_token
   def days
     (end_date.to_date - start_date.to_date).to_i
   end
@@ -56,5 +58,10 @@ class Trip < ActiveRecord::Base
       current_date += 1.day
       day += 1
     end
+  end
+
+  private
+  def set_update_token
+    self.update_token = SecureRandom.uuid
   end
 end

@@ -32,7 +32,6 @@ gem 'omniauth'
 gem 'devise_token_auth'
 
 gem 'will_paginate'
-
 # Deploy with Capistrano
 # gem 'capistrano', :group => :development
 

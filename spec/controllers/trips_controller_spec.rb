@@ -51,7 +51,7 @@ RSpec.describe TripsController, type: :controller do
       context 'Content' do
         subject(:r) { JSON.parse(response.body, symbolize_names: true) }
 
-        # it {expect(r[:id]).not_to be nil }
+        it {expect(r[:id]).not_to be nil }
         it { expect(r[:name]).to eq 'Trip test' }
         it { expect(r.key?(:intineraries)).to be true }
         it { expect(r[:intineraries].length).to eq 2 }
@@ -59,6 +59,7 @@ RSpec.describe TripsController, type: :controller do
         it { expect(r[:share]).to be_truthy }
         it { expect(r.key?(:local_contact)).to be true }
         it { expect(r[:local_contact]).to be_truthy }
+        it { expect(r[:update_token]).to be_truthy }
       end
     end
   end

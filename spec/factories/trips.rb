@@ -29,6 +29,7 @@
 #  supermarket         :string
 #  outdoor_store       :string
 #  user_id             :integer
+#  update_token        :string
 #
 
 FactoryGirl.define do
@@ -57,5 +58,6 @@ FactoryGirl.define do
     supermarket 'MyString'
     outdoor_store 'MyString'
     user
+    update_token nil
   end
 end

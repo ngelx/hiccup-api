@@ -29,6 +29,7 @@
 #  supermarket         :string
 #  outdoor_store       :string
 #  user_id             :integer
+#  update_token        :string
 #
 
 require 'rails_helper'
@@ -54,5 +55,10 @@ RSpec.describe Trip, type: :model do
     subject(:trip) { create(:trip, start_date: DateTime.current, end_date: DateTime.current + 2.days) }
 
     it { expect { trip.auto_create_intineraries }.to change { Intinerary.count }.by 2 }
+  end
+
+  describe 'update_token' do
+    subject(:trip) { create(:trip) }
+    its(:update_token) {should_not be_nil }
   end
 end
