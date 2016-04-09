@@ -53,7 +53,7 @@ RSpec.describe TripsController, type: :controller do
       context 'Content' do
         subject(:r) { JSON.parse(response.body, symbolize_names: true) }
 
-        it {expect(r[:id]).not_to be nil }
+        it { expect(r[:id]).not_to be nil }
         it { expect(r[:name]).to eq 'Trip test' }
         it { expect(r.key?(:intineraries)).to be true }
         it { expect(r[:intineraries].length).to eq 2 }
@@ -64,32 +64,31 @@ RSpec.describe TripsController, type: :controller do
         it { expect(r[:update_token]).to be_truthy }
       end
     end
-    context "Error" do
-      it "No argumnet" do
+    context 'Error' do
+      it 'No argumnet' do
         post :create, trip: nil
         expect(response).to have_http_status(400)
       end
-      it "bad argument, no name" do
+      it 'bad argument, no name' do
         attrs.delete(:name)
         post :create, trip: attrs
         expect(response).to have_http_status(422)
       end
-      it "bad argument, no start_date" do
+      it 'bad argument, no start_date' do
         attrs.delete(:start_date)
         post :create, trip: attrs
         expect(response).to have_http_status(422)
       end
-      it "bad argument, no end_date" do
+      it 'bad argument, no end_date' do
         attrs.delete(:end_date)
         post :create, trip: attrs
         expect(response).to have_http_status(422)
       end
-      it "internal server error" do
+      it 'internal server error' do
         allow_any_instance_of(Trip).to receive(:save).and_raise
         post :create, trip: attrs
         expect(response).to have_http_status(500)
       end
-
     end
   end
 
@@ -104,8 +103,8 @@ RSpec.describe TripsController, type: :controller do
 
     context 'Success' do
       before do
-        trip = create(:trip, name: "Original Trip")
-        patch :update, {id: trip.id, update_token: trip.update_token,trip: attrs}
+        trip = create(:trip, name: 'Original Trip')
+        patch :update, id: trip.id, update_token: trip.update_token, trip: attrs
       end
 
       it { expect(response).to have_http_status(:success) }
@@ -113,19 +112,19 @@ RSpec.describe TripsController, type: :controller do
       it { expect(response).to render_template(:create) }
       it { expect(JSON.parse(response.body, symbolize_names: true)[:name]).to eq 'Trip updated' }
     end
-    context "Error" do
-      let(:trip) {create(:trip, name: "Original Trip")}
+    context 'Error' do
+      let(:trip) { create(:trip, name: 'Original Trip') }
 
-      it "missing trip argument" do
-        patch :update, {id: trip.id, update_token: trip.update_token}
+      it 'missing trip argument' do
+        patch :update, id: trip.id, update_token: trip.update_token
         expect(response).to have_http_status(400)
       end
-      it "missing update_token argument" do
-        patch :update, {trip: attrs, id: trip.id}
+      it 'missing update_token argument' do
+        patch :update, trip: attrs, id: trip.id
         expect(response).to have_http_status(400)
       end
-      context "bad update_token" do
-        before {patch :update, {id: trip.id, update_token: "bad-token", trip: attrs} }
+      context 'bad update_token' do
+        before { patch :update, id: trip.id, update_token: 'bad-token', trip: attrs }
 
         it { expect(response).to have_http_status(:not_found) }
         it { expect(JSON.parse(response.body, symbolize_names: true)[:error]).to eq 'Couldn\'t find Trip' }
@@ -134,7 +133,7 @@ RSpec.describe TripsController, type: :controller do
   end
 
   describe 'GET show' do
-    let!(:trip) { create(:trip_complete_for_integration, name: "Show trip test", user: nil) }
+    let!(:trip) { create(:trip_complete_for_integration, name: 'Show trip test', user: nil) }
 
     context 'Success' do
       before { get :show, id: trip.share.public_url }
@@ -155,12 +154,11 @@ RSpec.describe TripsController, type: :controller do
         it { expect(r[:update_token]).to be_falsey }
       end
     end
-    context "Error" do
-      before { get :show, id: "not-a-valid-id" }
+    context 'Error' do
+      before { get :show, id: 'not-a-valid-id' }
 
       it { expect(response).to have_http_status(:not_found) }
       it { expect(JSON.parse(response.body, symbolize_names: true)[:error]).to eq 'Couldn\'t find Share' }
-
     end
   end
 end

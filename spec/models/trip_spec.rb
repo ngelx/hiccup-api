@@ -59,6 +59,6 @@ RSpec.describe Trip, type: :model do
 
   describe 'update_token' do
     subject(:trip) { create(:trip) }
-    its(:update_token) {should_not be_nil }
+    its(:update_token) { should_not be_nil }
   end
 end

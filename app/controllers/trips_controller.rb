@@ -17,14 +17,14 @@ class TripsController < ApplicationController
         render json: @trip.errors, status: 422
       end
     else
-      render json: {error: "missing trip argument"}, status: 400
+      render json: { error: 'missing trip argument' }, status: 400
     end
   end
 
   def update
-    if params[:trip] and  params[:update_token]
+    if params[:trip] && params[:update_token]
       @trip = Trip.find_by!(id: params[:id], update_token: params[:update_token])
-      #raise ActiveRecord::RecordNotFound unless @trip.update_token == params[:update_token]
+      # raise ActiveRecord::RecordNotFound unless @trip.update_token == params[:update_token]
 
       if @trip.update(params_trip)
         render 'create', formats: [:json], handlers: [:jbuilder], status: 201
@@ -32,17 +32,16 @@ class TripsController < ApplicationController
         render json: @trip.errors, status: 422
       end
     else
-      render json: {error: "missing argument"}, status: 400
+      render json: { error: 'missing argument' }, status: 400
     end
   end
 
-  # kind of wierd, it is not a standar show action ...
+  # kind of weird, it is not a standar show action ..
   def show
     share = Share.find_by!(public_url: params[:id])
     @trip = share.trip
     render 'show', formats: [:json], handlers: [:jbuilder], status: 201
   end
-
 
   private
 
