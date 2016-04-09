@@ -7,17 +7,33 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.new(params_trip)
-    if @trip.save!
-      @trip.auto_create_intineraries
-      @trip.auto_create_share
-      render 'show', formats: [:json], handlers: [:jbuilder], status: 201
+    if params[:trip]
+      @trip = Trip.new(params_trip)
+      if @trip.save
+        @trip.auto_create_intineraries
+        @trip.auto_create_share
+        render 'show', formats: [:json], handlers: [:jbuilder], status: 201
+      else
+        render json: @trip.errors, status: 422
+      end
     else
-      render json: @trip.errors, status: 422
+      render json: {error: "missing trip argument"}, status: 400
     end
   end
 
-  def updated
+  def update
+    if params[:trip] and  params[:update_token]
+      @trip = Trip.find_by!(id: params[:id], update_token: params[:update_token])
+      #raise ActiveRecord::RecordNotFound unless @trip.update_token == params[:update_token]
+
+      if @trip.update(params_trip)
+        render 'show', formats: [:json], handlers: [:jbuilder], status: 201
+      else
+        render json: @trip.errors, status: 422
+      end
+    else
+      render json: {error: "missing argument"}, status: 400
+    end
   end
 
   def show
