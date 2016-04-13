@@ -55,13 +55,13 @@ class TripsController < ApplicationController
   end
 
   def password
-    if params[:share] && params[:share][:password] && params[:update_token]
+    if params[:share] && params[:share][:password] && !params[:share][:password].empty? && params[:update_token]
       trip = Trip.find_by!(id: params[:id], update_token: params[:update_token])
-      trip.share
-      if trip.share.update(params_share)
+      share = trip.share
+      if share.update(params_share)
         head :ok
       else
-        render json: trip.share.errors, status: 422
+        render json: { error: share.errors.full_messages }, status: 422
       end
     else
       render json: { error: 'missing argument' }, status: 400

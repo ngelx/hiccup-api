@@ -620,3 +620,133 @@ WHERE c.contype = 'f'
   AND t3.nspname = ANY (current_schemas(false))
 ORDER BY c.conname
 [0m
+Incoming Headers:
+  Origin: http://hiccup.pow:4200
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+
+
+Started GET "/trips" for 127.0.0.1 at 2016-04-12 20:30:37 +0000
+[Rollbar] Reporting exception: undefined method `mount_devise_token_auth_for' for #<ActionDispatch::Routing::Mapper:0x00000004d621b8>
+[Rollbar] Exception not reported because Rollbar is disabled
+
+NoMethodError (undefined method `mount_devise_token_auth_for' for #<ActionDispatch::Routing::Mapper:0x00000004d621b8>):
+  config/routes.rb:4:in `block in <top (required)>'
+  config/routes.rb:3:in `<top (required)>'
+
+
+  Rendered /home/vagrant/.rvm/gems/ruby-2.2-head/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.4ms)
+  Rendered /home/vagrant/.rvm/gems/ruby-2.2-head/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /home/vagrant/.rvm/gems/ruby-2.2-head/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.3ms)
+  Rendered /home/vagrant/.rvm/gems/ruby-2.2-head/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (30.5ms)
+
+
+Started GET "/trips" for 127.0.0.1 at 2016-04-13 13:38:53 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsController#index as HTML
+  [1m[35mTrip Load (3.2ms)[0m  SELECT  "trips".* FROM "trips" LIMIT 30 OFFSET 0
+Completed 200 OK in 23ms (Views: 3.4ms | ActiveRecord: 4.0ms)
+Incoming Headers:
+  Origin: http://hiccup.pow:4200
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+
+
+Started GET "/trips" for 127.0.0.1 at 2016-04-13 13:39:17 +0000
+Processing by TripsController#index as HTML
+  [1m[36mTrip Load (0.5ms)[0m  [1mSELECT  "trips".* FROM "trips" LIMIT 30 OFFSET 0[0m
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.5ms)
+Incoming Headers:
+  Origin: http://hiccup.pow:4200
+  Access-Control-Request-Method: POST
+  Access-Control-Request-Headers: accept, content-type
+Preflight Headers:
+  Content-Type: text/plain
+  Access-Control-Allow-Origin: http://hiccup.pow:4200
+  Access-Control-Allow-Methods: GET, POST, DELETE, PUT, PATCH, OPTIONS, HEAD
+  Access-Control-Expose-Headers: 
+  Access-Control-Max-Age: 0
+  Access-Control-Allow-Credentials: true
+  Access-Control-Allow-Headers: accept, content-type
+Incoming Headers:
+  Origin: http://hiccup.pow:4200
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+
+
+Started POST "/trips" for 127.0.0.1 at 2016-04-13 13:39:57 +0000
+Value for params[:intineraryDays] was set to nil, because it was one of [], [null] or [null, null, ...]. Go to http://guides.rubyonrails.org/security.html#unsafe-query-generation for more information.
+Processing by TripsController#create as HTML
+  Parameters: {"name"=>"trip1", "image"=>nil, "organizer"=>nil, "goals"=>nil, "startLocation"=>nil, "endLocation"=>nil, "startDate"=>"2016-04-13T15:00:00.000Z", "endDate"=>"2016-04-21T15:00:00.000Z", "planedRoute"=>nil, "transportation"=>nil, "comunication"=>nil, "freakOut"=>nil, "inReachMap"=>nil, "localContactName"=>nil, "localContactEmail"=>nil, "localContactPhone"=>nil, "agency"=>nil, "stoveFuel"=>nil, "timeToTrailhead"=>nil, "directionOut"=>nil, "conditionCaution"=>nil, "animalCaution"=>nil, "plantCaution"=>nil, "flyIssue"=>nil, "supermarket"=>nil, "outdoorsStore"=>nil, "resources"=>nil, "guides"=>nil, "tripEditorLastStep"=>5, "intineraryDays"=>nil}
+Completed 400 Bad Request in 0ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+Incoming Headers:
+  Origin: http://hiccup.pow:4200
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+
+
+Started GET "/trips" for 127.0.0.1 at 2016-04-13 14:05:43 +0000
+Processing by TripsController#index as HTML
+  [1m[35mTrip Load (0.6ms)[0m  SELECT  "trips".* FROM "trips" LIMIT 30 OFFSET 0
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.6ms)
+Incoming Headers:
+  Origin: http://hiccup.pow:4200
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+
+
+Started GET "/trips" for 127.0.0.1 at 2016-04-13 14:06:12 +0000
+Processing by TripsController#index as HTML
+  [1m[36mTrip Load (0.6ms)[0m  [1mSELECT  "trips".* FROM "trips" LIMIT 30 OFFSET 0[0m
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.6ms)
+Incoming Headers:
+  Origin: http://hiccup.pow:4200
+  Access-Control-Request-Method: POST
+  Access-Control-Request-Headers: accept, content-type
+Preflight Headers:
+  Content-Type: text/plain
+  Access-Control-Allow-Origin: http://hiccup.pow:4200
+  Access-Control-Allow-Methods: GET, POST, DELETE, PUT, PATCH, OPTIONS, HEAD
+  Access-Control-Expose-Headers: 
+  Access-Control-Max-Age: 0
+  Access-Control-Allow-Credentials: true
+  Access-Control-Allow-Headers: accept, content-type
+Incoming Headers:
+  Origin: http://hiccup.pow:4200
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+
+
+Started POST "/trips" for 127.0.0.1 at 2016-04-13 14:06:55 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TripsController#create as HTML
+  Parameters: {"trip"=>{"name"=>"trip1", "image"=>nil, "organizer"=>"", "goals"=>"", "start_location"=>nil, "end_location"=>nil, "start_date"=>"2016-04-13T15:00:00.000Z", "end_date"=>"2016-04-15T15:00:00.000Z", "planed_route"=>nil, "transportation"=>nil, "comunication"=>nil, "freak_out"=>nil, "in_reach_map"=>nil, "local_contact_name"=>nil, "local_contact_email"=>nil, "local_contact_phone"=>nil, "agency"=>nil, "stove_fuel"=>nil, "time_to_trailhead"=>nil, "direction_out"=>nil, "condition_caution"=>nil, "animal_caution"=>nil, "plant_caution"=>nil, "fly_issue"=>nil, "supermarket"=>nil, "outdoors_store"=>nil, "resources"=>nil, "guides"=>nil, "trip_editor_last_step"=>5}}
+Unpermitted parameters: image, organizer, goals, planed_route, local_contact_name, local_contact_email, local_contact_phone, time_to_trailhead, outdoors_store, resources, guides, trip_editor_last_step
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (4.2ms)[0m  [1mINSERT INTO "trips" ("name", "start_date", "end_date", "update_token") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "trip1"], ["start_date", "2016-04-13 15:00:00.000000"], ["end_date", "2016-04-15 15:00:00.000000"], ["update_token", "59e7dbf5-c80e-47ed-b30b-6b617b0030c4"]]
+  [1m[35m (1.2ms)[0m  COMMIT
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (3.3ms)[0m  INSERT INTO "intineraries" ("trip_id") VALUES ($1) RETURNING "id"  [["trip_id", 1]]
+  [1m[36m (1.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "intineraries" ("trip_id") VALUES ($1) RETURNING "id"[0m  [["trip_id", 1]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (4.5ms)[0m  INSERT INTO "shares" ("trip_id", "public_url", "private_url") VALUES ($1, $2, $3) RETURNING "id"  [["trip_id", 1], ["public_url", "3863950c-bc95-49bd-8b64-24bcc26c81c0"], ["private_url", "462386b1-e14d-413e-887a-f711e697e4d5"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mShare Load (0.5ms)[0m  SELECT  "shares".* FROM "shares" WHERE "shares"."trip_id" = $1 LIMIT 1  [["trip_id", 1]]
+  [1m[36mLocalContact Load (1.2ms)[0m  [1mSELECT  "local_contacts".* FROM "local_contacts" WHERE "local_contacts"."trip_id" = $1 LIMIT 1[0m  [["trip_id", 1]]
+  Rendered trips/_trip.json.jbuilder (14.7ms)
+  [1m[35mIntinerary Load (0.3ms)[0m  SELECT "intineraries".* FROM "intineraries" WHERE "intineraries"."trip_id" = $1  [["trip_id", 1]]
+  Rendered trips/create.json.jbuilder (36.4ms)
+Completed 201 Created in 291ms (Views: 64.5ms | ActiveRecord: 34.7ms)
+Incoming Headers:
+  Origin: http://hiccup.pow:4200
+  Access-Control-Request-Method: 
+  Access-Control-Request-Headers: 
+
+
+Started GET "/trips" for 127.0.0.1 at 2016-04-13 14:07:49 +0000
+Processing by TripsController#index as HTML
+  [1m[36mTrip Load (0.8ms)[0m  [1mSELECT  "trips".* FROM "trips" LIMIT 30 OFFSET 0[0m
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 0.8ms)

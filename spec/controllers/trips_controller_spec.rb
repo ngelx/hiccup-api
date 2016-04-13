@@ -228,6 +228,11 @@ RSpec.describe TripsController, type: :controller do
         it { expect(response).to have_http_status(:not_found) }
         it { expect(JSON.parse(response.body, symbolize_names: true)[:error]).to eq 'Couldn\'t find Trip' }
       end
+      context 'bad password' do
+        before { put :password, id: trip.id, update_token: trip.update_token, share: { password: '123' } }
+        it { expect(response).to have_http_status(:unprocessable_entity) }
+        it { expect(JSON.parse(response.body, symbolize_names: true)[:error].first).to include('Password is too short') }
+      end
     end
   end
 end

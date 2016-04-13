@@ -22,6 +22,8 @@ class Share < ActiveRecord::Base
 
   validates :trip, presence: true
 
+  validates :password, length: (6..32), allow_nil: true
+
   before_create :generate_urls
 
   private

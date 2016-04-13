@@ -35,4 +35,10 @@ RSpec.describe Share, type: :model do
       it { expect(share.authenticate('no-password')).to be false }
     end
   end
+
+  describe 'validate password' do
+    it { expect(build(:share, password: nil)).to be_valid }
+    it { expect(build(:share, password: 'abcd123')).to be_valid }
+    it { expect(build(:share, password: '123')).not_to be_valid }
+  end
 end
