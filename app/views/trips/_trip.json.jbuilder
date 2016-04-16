@@ -8,3 +8,6 @@ json.extract! trip, :id, :name, :organizator, :start_date, :end_date, :start_loc
 json.contact_name trip.local_contact.name
 json.contact_email trip.local_contact.email
 json.contact_phone trip.local_contact.phone
+
+json.public_uuid trip.share.public_url
+json.private_uuid trip.share.private_url

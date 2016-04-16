@@ -4,10 +4,4 @@ json.set! :trip do
   json.partial! 'trip', trip: @trip
 end
 
-json.set! :share do
-  json.share @trip.share
-end
-
-json.set! :intineraries do
-  json.intineraries @trip.intineraries
-end
+json.intineraries @trip.intineraries
