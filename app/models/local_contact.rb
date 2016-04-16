@@ -6,7 +6,7 @@
 #
 #  id      :integer          not null, primary key
 #  trip_id :integer          not null
-#  name    :string           not null
+#  name    :string
 #  email   :string
 #  phone   :string
 #
@@ -19,5 +19,5 @@
 class LocalContact < ActiveRecord::Base
   belongs_to :trip, inverse_of: :local_contact
 
-  validates :name, :trip, presence: true
+  validates :trip, presence: true
 end

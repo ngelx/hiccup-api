@@ -6,7 +6,7 @@
 #
 #  id      :integer          not null, primary key
 #  trip_id :integer          not null
-#  name    :string           not null
+#  name    :string
 #  email   :string
 #  phone   :string
 #

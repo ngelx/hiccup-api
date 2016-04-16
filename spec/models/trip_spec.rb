@@ -28,6 +28,8 @@
 #  fly_issue           :text
 #  supermarket         :string
 #  outdoor_store       :string
+#  created_at          :datetime
+#  updated_at          :datetime
 #  user_id             :integer
 #  update_token        :string
 #

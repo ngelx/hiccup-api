@@ -3,18 +3,22 @@
 class TripsController < ApplicationController
   def index
     @trips = Trip.paginate(page: params[:page], per_page: params[:per_page])
-    render json: @trips
+    render 'index', formats: [:json], handlers: [:jbuilder], status: 200
   end
 
   def create
     if params[:trip]
+      params[:trip][:local_contact_attributes] = {}
+      params[:trip][:local_contact_attributes][:name] = params[:trip][:local_contact_name]
+      params[:trip][:local_contact_attributes][:email] = params[:trip][:local_contact_email]
+      params[:trip][:local_contact_attributes][:phone] = params[:trip][:local_contact_phone]
       @trip = Trip.new(params_trip)
       if @trip.save
         @trip.auto_create_intineraries
         @trip.auto_create_share
         render 'create', formats: [:json], handlers: [:jbuilder], status: 201
       else
-        render json: @trip.errors, status: 422
+        render json: {error: @trip.errors}, status: 422
       end
     else
       render json: { error: 'missing trip argument' }, status: 400
@@ -28,7 +32,7 @@ class TripsController < ApplicationController
       if @trip.update(params_trip)
         render 'create', formats: [:json], handlers: [:jbuilder], status: 201
       else
-        render json: @trip.errors, status: 422
+        render json: {error: @trip.errors}, status: 422
       end
     else
       render json: { error: 'missing argument' }, status: 400

@@ -26,6 +26,8 @@ class CreateTrips < ActiveRecord::Migration
       t.text :fly_issue
       t.string :supermarket
       t.string :outdoor_store
+
+      t.timestamps
     end
   end
 end
