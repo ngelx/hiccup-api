@@ -13,6 +13,9 @@ Rails.application.routes.draw do
       put 'password'
     end
   end
+
+  resources :shares, only: :index
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
