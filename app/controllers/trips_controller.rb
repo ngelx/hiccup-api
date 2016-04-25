@@ -26,8 +26,10 @@ class TripsController < ApplicationController
   end
 
   def update
-    if params[:trip] && params[:update_token]
-      @trip = Trip.find_by!(id: params[:id], update_token: params[:update_token])
+#    if params[:trip] && params[:update_token]
+#      @trip = Trip.find_by!(id: params[:id], update_token: params[:update_token])
+    if params[:trip]
+      @trip = Trip.find_by!(id: params[:id])
 
       if @trip.update(params_trip)
         render 'create', formats: [:json], handlers: [:jbuilder], status: 201

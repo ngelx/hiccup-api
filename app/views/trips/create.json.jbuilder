@@ -1,12 +1,13 @@
 # encoding: utf-8
 # frozen_string_literal: true
 json.set! :trip do
-  json.partial! 'trip', trip: @trip
+  json.array! [@trip] do |trip|
+    json.partial! 'trip', trip: trip
+  end
 end
 
-json.share @trip.share
+json.shares [@trip.share]
 
-
-json.update_token @trip.update_token
+#json.update_token @trip.update_token
 
 json.intineraries @trip.intineraries

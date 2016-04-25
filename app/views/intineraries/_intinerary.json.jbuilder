@@ -1,0 +1,11 @@
+json.extract! intinerary,
+                :id,
+                :start_location,
+                :end_location,
+                :start_time,
+                :end_time,
+                :water,
+                :hammok,
+                :fishing,
+                :forecast,
+                :trip_id

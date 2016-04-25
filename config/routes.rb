@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :shares, only: :index
-  
+
+  resources :intineraries, only: :update
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

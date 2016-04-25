@@ -45,7 +45,7 @@ class Trip < ActiveRecord::Base
 
   before_create :set_update_token
   def days
-    (end_date.to_date - start_date.to_date).to_i
+    (end_date.to_date - start_date.to_date).to_i + 1
   end
 
   def auto_create_share
@@ -56,10 +56,18 @@ class Trip < ActiveRecord::Base
     current_date = start_date.to_date
     day = 1
     while day <= days
-      intineraries.create
+      end_time = (current_date.end_of_day - 4.hours).beginning_of_hour
+      start_time = (current_date.beginning_of_day + 8.hours).beginning_of_hour
+      intineraries.create(start_time: start_time, end_time: end_time )
       current_date += 1.day
       day += 1
     end
+    first_day = self.intineraries.first
+    first_day.start_location = self.start_location
+    first_day.save
+    last_day = self.intineraries.last
+    last_day.end_location = self.end_location
+    last_day.save
   end
 
   private
